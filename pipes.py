@@ -1,9 +1,12 @@
 import pygame
 
-CELL_SIZE = 80
+CELL_SIZE = 100
 
 pipe_images = {
-    "straight": pygame.image.load("assets/images/straight.png")
+    "straight": pygame.image.load("assets/images/straight.png"),
+    "corner": pygame.image.load("assets/images/corner.png"),
+    "t_shaped": pygame.image.load("assets/images/t_shaped.png"),
+    "end": pygame.image.load("assets/images/end.png"),
 }
 
 for key in pipe_images:
@@ -19,7 +22,7 @@ class Pipe:
         self.base_image = pipe_images[self.type]
 
     def draw(self, screen):
-        rotated_image = pygame.transform.rotate(self.base_image, self.rotation)
+        rotated_image = pygame.transform.rotate(self.base_image, -self.rotation)
         rect = rotated_image.get_rect(center=(self.x + CELL_SIZE // 2, self.y + CELL_SIZE // 2))
         screen.blit(rotated_image, rect.topleft)
 
